@@ -29,7 +29,7 @@ function Cards(props) {
               <Button
                 variant="outline-dark"
                 onClick={() => {
-                  window.location.assign("http://localhost:5000/"+props.variab+"/google");
+                  window.location.assign("/"+props.variab+"/google");
                   history.push(props.route);
                 }}
               >

@@ -7,7 +7,7 @@ const newSchema = new Schema({
     company: String, 
     tel: Number, 
     capacity: Number, 
-    location: String,
+    cost: Number,
     about: String
 });
 

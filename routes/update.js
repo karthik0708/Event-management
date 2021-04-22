@@ -33,7 +33,7 @@ router.post('/banquet/update', (req, res) => {
             company:req.body.title, 
             tel: req.body.tel,
             capacity: req.body.type,
-            location: req.body.cost,
+            cost: req.body.cost,
             about: req.body.content
         } 
     }).then(() => {

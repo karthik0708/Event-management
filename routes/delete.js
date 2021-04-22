@@ -33,7 +33,7 @@ router.post('/banquet/delete', (req, res) => {
             company:null, 
             tel: null,
             capacity: null,
-            location: null,
+            cost: null,
             about: null
         } 
     }).then(() => {

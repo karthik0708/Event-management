@@ -26,7 +26,6 @@ function CreateArea(props) {
         .catch(error=>console.log(error))
     }
   });
-  console.log("imma heere",temp)
   const [isExpanded, setExpanded] = useState(false);
   const [note, setNote] = useState({
     email:email_id,
@@ -123,7 +122,7 @@ function CreateArea(props) {
             name="cost"
             onChange={handleChange}
             value={note.cost}
-            placeholder={props.id == 1 ?"Cost per plate" : (props.id == 2 ?"Location" : "Per hour charge...")}
+            placeholder={props.id == 1 ?"Cost per plate" : (props.id == 2 ?"Cost per day" : "Per hour charge...")}
             defaultValue={temp.cost || ''}
           />
         )}
@@ -133,8 +132,8 @@ function CreateArea(props) {
             autoComplete="off"
             onChange={handleChange}
             value={note.content}
-            placeholder="About your service..."
-            rows={isExpanded ? 3 : 1}
+            placeholder={props.id=="2"?"Mention your location and about your service...":"About your service..."}
+            rows={props.id == "2" ? 2 : 1}
             defaultValue={temp.content || ''}
           />
         )}

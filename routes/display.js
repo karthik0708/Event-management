@@ -32,7 +32,7 @@ router.get('/banquet/display', (req, res) => {
             title: data[0].company, 
             tel: data[0].tel, 
             type: data[0].capacity, 
-            cost: data[0].location,
+            cost: data[0].cost,
             content: data[0].about
         }
         res.json(dis);

@@ -29,11 +29,15 @@ const display_all=require('./routes/display_all')
 const update=require('./routes/update');
 const del=require('./routes/delete')
 const display=require('./routes/display')
+const tocart=require('./routes/tocart')
+const send_cart=require('./routes/send_cart')
 
 app.use('/', update);
 app.use('/',del);
 app.use('/',display);
 app.use('/',display_all)
+app.use('/',tocart)
+app.use('/',send_cart)
 
 const PORT = process.env.PORT || 5000;
 const url = "mongodb+srv://bg:hello123@data.cyqgb.mongodb.net/db?retryWrites=true&w=majority";
@@ -96,7 +100,7 @@ rec_login=(email_id,name,cat)=>{
                     company: null, 
                     tel: null, 
                     capacity: null, 
-                    location: null,
+                    cost: null,
                     about: null           
                 };
                 (new banquet(user)).save()

@@ -13,7 +13,7 @@ function Caller(props) {
       console.log(prevNotes);
       return [newNote];
     });
-    console.log(newNote)
+    console.log("near newnote",newNote)
     axios.post('/'+props.type+'/update',newNote)
       .then(res=>console.log("sent successfully"))
       .catch(error=>console.log(error))

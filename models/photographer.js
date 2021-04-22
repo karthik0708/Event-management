@@ -5,8 +5,8 @@ const newSchema = new Schema({
     email: String,
     name: String,
     company: String, 
-    tel: Number, 
-    charge: Number, 
+    contact: Number, 
+    cost: Number, 
     about: String
 });
 

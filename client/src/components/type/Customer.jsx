@@ -1,4 +1,5 @@
 import React,{ useState,useEffect } from 'react';
+import {useLocation} from 'react-router-dom';
 import axios from "axios";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,22 +55,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Customer() {
-  const [temp,setTemp]=useState("")
-  useEffect(() => {
-    if (!temp) {
-      axios.get('/'+'customer'+'/dis_ban')
-        .then(res=>{console.log(res.data)})
-        .catch(error=>console.log(error))
-        
-      axios.get('/'+'customer'+'/dis_cater')
-        .then(res=>{console.log(res.data)})
-        .catch(error=>console.log(error))
+  var cart_spec=[];
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const email_id = params.get('email');
+  const username = params.get('username');
+  
 
-      axios.get('/'+'customer'+'/dis_photo')
-        .then(res=>{console.log(res.data)})
+  const [temp1,setTemp1]=useState([])
+  const [temp2,setTemp2]=useState([])
+  const [temp3,setTemp3]=useState([])
+  const [cart,setCart]=useState([])
+  useEffect(() => {
+    if (temp1) {
+      axios.get('/'+'customer'+'/dis_ban')
+        .then(res=>{setTemp1(res.data)})
         .catch(error=>console.log(error))
     }
-  });
+  },[]);
+  useEffect(() => {
+    if (temp2) {
+       axios.get('/'+'customer'+'/dis_cater')
+        .then(res=>{setTemp2(res.data)})
+        .catch(error=>console.log(error))
+    }
+  },[]);
+  useEffect(() => {
+    if (temp3) {
+      axios.get('/'+'customer'+'/dis_photo')
+        .then(res=>{setTemp3(res.data)})
+        .catch(error=>console.log(error))
+    }
+  },[]);
+  useEffect(() => {
+    if (cart) {
+      axios.get('/'+'customer'+'/cart_items',{params: {cust_email: email_id, cust_name:username}})
+        .then(res=>{console.log(res.data);setCart(res.data)})
+        .catch(error=>console.log(error))
+    }
+  },[]);
+
+  function addCart(note){
+    console.log("before set cart",note);
+    setCart((prevNotes) => {
+      return [...prevNotes,note];
+    });
+    console.log(cart);
+  }
 
   // setTemp(res.data)
   function hc1(){
@@ -110,40 +142,94 @@ function Customer() {
         <Tab label="Banquet Hall" onClick ={hc1} {...a11yProps(0)} />
         <Tab label="Caterer" onClick = {hc2} {...a11yProps(1)} />
         <Tab label="Photographer" onClick = {hc3} {...a11yProps(2)} />
-        {/* <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} /> */}
+        <Tab label="Cart" {...a11yProps(3)} />
+        {/* <Tab label="Item Five" {...a11yProps(4)} /> */}
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Card 
-          company= "Aditya Banquet"
-          contact= "9849358202"
-          capacity="2000"
-          location="Hyderabad"
-          content="We are the best at what we do!"
-        />
-        <Card 
-          company= ""
-          contact= ""
-          capacity=""
-          location=""
-          content=""
-        />
-        <Card 
-          company= ""
-          contact= ""
-          capacity=""
-          location=""
-          content=""
-        />
+        
+      {temp1.map((noteItem, index) => {
+        return (
+
+            <Card
+              key={index}
+              id={index}
+              sid="1"
+              cust_email={email_id}
+              cust_name={username}
+              email={noteItem.email}
+              name={noteItem.name}
+              company={noteItem.company}
+              contact={noteItem.tel}
+              cost={noteItem.cost}
+              capacity={noteItem.capacity}
+              content={noteItem.about}
+              onCart={addCart}
+            />
+        );
+      })}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      {temp2.map((noteItem, index) => {
+        return (
+            <Card
+              key={index}
+              id={index}
+              sid="2"
+              cust_email={email_id}
+              cust_name={username}
+              email={noteItem.email}
+              name={noteItem.name}
+              company={noteItem.company}
+              contact={noteItem.tel}
+              cuisine={noteItem.cuisines}
+              cost={noteItem.cost}
+              content={noteItem.about}
+              onCart={addCart}
+            />
+        );
+      })}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      {temp3.map((noteItem, index) => {
+        return (
+            <Card
+              key={index}
+              id={index}
+              sid="3"
+              cust_email={email_id}
+              cust_name={username}
+              email={noteItem.email}
+              name={noteItem.name}
+              company={noteItem.company}
+              contact={noteItem.tel}
+              cost={noteItem.charge}
+              content={noteItem.about}
+              onCart={addCart}
+            />
+        );
+      })}
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+      {/* {cart_spec = cart.filter((item) => item.email===email_id)}
+      {cart_spec.map((noteItem, index) => {
+        return (
+            <Card
+              key={index}
+              id={index}
+              sid={noteItem.sid}
+              company={noteItem.company}
+              contact={noteItem.tel}
+              cost={noteItem.charge}
+              content={noteItem.about}
+              onCart={addCart}
+            />
+        );
+      })} */}
+      <div>
+        {cart.filter(item => item.email == email_id).map(fitem => (
+          JSON.stringify(fitem)
+        ))}
+      </div>
       </TabPanel>
       {/* <TabPanel value={value} index={4}>
         Item Five
