@@ -4,7 +4,11 @@ const router = express.Router();
 const cart = require('../models/cart');
 
 router.get('/customer/cart_items', (req, res) => {
-    cart.find().then((data) => {
+    cart.find({
+        cust_email: req.query.cust_email,
+        cust_name: req.query.cust_name
+    }).then((data) => {
+        console.log(data);
         res.json(data)
     })
 });

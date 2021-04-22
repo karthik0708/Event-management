@@ -5,8 +5,8 @@ const cart = require('../models/cart');
 
 router.post('/customer/tocart', (req, res) => {
     var item={
-        cust_name: req.body.cust_email,
-        cust_email: req.body.cust_name,
+        cust_name: req.body.cust_name,
+        cust_email: req.body.cust_email,
         type: req.body.type,
         email:req.body.email,
         name: req.body.name,
