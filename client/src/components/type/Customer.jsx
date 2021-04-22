@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Customer() {
-  var cart_spec=[];
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const email_id = params.get('email');
@@ -90,7 +89,7 @@ function Customer() {
   useEffect(() => {
     if (cart) {
       axios.get('/'+'customer'+'/cart_items',{params: {cust_email: email_id, cust_name:username}})
-        .then(res=>{console.log(res.data);setCart(res.data)})
+        .then(res=>{setCart(res.data)})
         .catch(error=>console.log(error))
     }
   },[]);
@@ -210,8 +209,7 @@ function Customer() {
       })}
       </TabPanel>
       <TabPanel value={value} index={3}>
-      {/* {cart_spec = cart.filter((item) => item.email===email_id)}
-      {cart_spec.map((noteItem, index) => {
+      {cart.map((noteItem, index) => {
         return (
             <Card
               key={index}
@@ -224,12 +222,7 @@ function Customer() {
               onCart={addCart}
             />
         );
-      })} */}
-      <div>
-        {cart.filter(item => item.email == email_id).map(fitem => (
-          JSON.stringify(fitem)
-        ))}
-      </div>
+      })}
       </TabPanel>
       {/* <TabPanel value={value} index={4}>
         Item Five
