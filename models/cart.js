@@ -9,7 +9,8 @@ const newSchema = new Schema({
     name: String,
     company: String,
     cost:Number,
-    contact: Number
+    contact: Number,
+    date: String
 });
 
 module.exports = mongoose.model('cart', newSchema);

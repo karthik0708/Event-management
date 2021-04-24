@@ -25,12 +25,14 @@ const caterer = require('./models/caterer');
 const photographer = require('./models/photographer');
 const customer = require('./models/customer');
 
+
 const display_all=require('./routes/display_all')
 const update=require('./routes/update');
 const del=require('./routes/delete')
 const display=require('./routes/display')
 const tocart=require('./routes/tocart')
 const send_cart=require('./routes/send_cart')
+const book=require('./routes/book')
 
 app.use('/', update);
 app.use('/',del);
@@ -38,6 +40,7 @@ app.use('/',display);
 app.use('/',display_all)
 app.use('/',tocart)
 app.use('/',send_cart)
+app.use('/',book)
 
 const PORT = process.env.PORT || 5000;
 const url = "mongodb+srv://bg:hello123@data.cyqgb.mongodb.net/db?retryWrites=true&w=majority";
@@ -65,7 +68,8 @@ rec_login=(email_id,name,cat)=>{
             if (cat=='customer'){
                 user={
                     email: email_id,
-                    name: name
+                    name: name,
+                    bookings:[]
                 };
                 (new customer(user)).save()
             }
@@ -77,7 +81,9 @@ rec_login=(email_id,name,cat)=>{
                     tel: null, 
                     cuisines: null, 
                     cost: null,
-                    about: null
+                    about: null,
+                    booked_on: [],
+                    bookings:[]
                 };
                 (new caterer(user)).save()
             }
@@ -87,8 +93,10 @@ rec_login=(email_id,name,cat)=>{
                     name: name,
                     company: null, 
                     tel: null, 
-                    charge: null, 
-                    about: null
+                    cost: null, 
+                    about: null,
+                    booked_on: [],
+                    bookings:[]
                 };
                 (new photographer(user)).save()
             }
@@ -101,7 +109,9 @@ rec_login=(email_id,name,cat)=>{
                     tel: null, 
                     capacity: null, 
                     cost: null,
-                    about: null           
+                    about: null,
+                    booked_on: [] ,
+                    bookings:[]         
                 };
                 (new banquet(user)).save()
             }   
@@ -120,6 +130,7 @@ function call_back(category,type){
         cat=category.substring(1);
         
         rec_login(email_id,user_name, cat)
+        
 		res.redirect(red_url.format({
             pathname:category,
             query: {
