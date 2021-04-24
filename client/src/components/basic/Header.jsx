@@ -6,13 +6,13 @@ function Header() {
         <span style={{color: "#fff",fontWeight:"400",fontSize:"2em"}}>BaadhaiHo</span>
         <Button
           style={{float:"right",position:"abs"}}
-          variant="outline-dark"
+          variant="outline-secondary"
           onClick={() => {
           window.location.assign("/");
           history.push(props.route);
           }}
           >
-          Logout
+          Home
         </Button>
       </header>
   );

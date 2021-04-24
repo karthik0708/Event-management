@@ -47,29 +47,6 @@ function Caller(props) {
       onDelete={deleteNote} 
       id = {props.id}
       />
-      {/* {notes.map((noteItem, index) => {
-        return (
-          <div
-            style={{
-              margin: "25px 25px 25px 15px",
-              float: "left",
-              fontFamily: "McLaren"
-            }}
-          >
-            <Note
-              key={index}
-              id={index}
-              sid={props.id}
-              title={noteItem.title}
-              content={noteItem.content}
-              cost={noteItem.cost}
-              tel={noteItem.tel}
-              type={noteItem.type}
-              onDelete={deleteNote}
-            />
-          </div>
-        );
-      })} */}
     </div>
   );
 }
