@@ -3,7 +3,7 @@ const router = express.Router();
 
 const cart = require('../models/cart');
 
-router.post('/customer/tocart', (req, res) => {
+router.post('/customer/remove_item', (req, res) => {
     var item={
         cust_name: req.body.cust_name,
         cust_email: req.body.cust_email,
@@ -15,14 +15,9 @@ router.post('/customer/tocart', (req, res) => {
         contact: req.body.contact,
         date:req.body.date
     };
-    (new cart(item)).save((error) => {
-        if (error) {
-            res.json("not saved");
-        }
-        else {
-            res.json("item added");
-        }
-    });
+    cart.deleteOne(item).then(() => {
+        res.json("deleted item");
+    })
 });
 
 module.exports = router;

@@ -6,6 +6,7 @@ const caterer = require('../models/caterer');
 const photographer = require('../models/photographer');
 
 router.post('/caterer/update', (req, res) => {
+
     caterer.updateOne({
         email:req.body.email,
         name:req.body.name
@@ -37,6 +38,7 @@ router.post('/banquet/update', (req, res) => {
             about: req.body.content
         } 
     }).then(() => {
+        console.log(res.body);
         res.json("updated");
     })
 
@@ -50,8 +52,8 @@ router.post('/photographer/update', (req, res) => {
     { 
         $set:{ 
             company:req.body.title, 
-            tel: req.body.tel,
-            charge: req.body.cost,
+            contact: req.body.tel,
+            cost: req.body.cost,
             about: req.body.content
         } 
     }).then(() => {

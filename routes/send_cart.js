@@ -8,7 +8,6 @@ router.get('/customer/cart_items', (req, res) => {
         cust_email: req.query.cust_email,
         cust_name: req.query.cust_name
     }).then((data) => {
-        console.log(data);
         res.json(data)
     })
 });

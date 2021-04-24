@@ -25,22 +25,25 @@ const caterer = require('./models/caterer');
 const photographer = require('./models/photographer');
 const customer = require('./models/customer');
 
-
-const display_all=require('./routes/display_all')
+const display_all=require('./routes/display_all');
 const update=require('./routes/update');
-const del=require('./routes/delete')
-const display=require('./routes/display')
-const tocart=require('./routes/tocart')
-const send_cart=require('./routes/send_cart')
-const book=require('./routes/book')
+const del=require('./routes/delete');
+const display=require('./routes/display');
+const tocart=require('./routes/tocart');
+const send_cart=require('./routes/send_cart');
+const book=require('./routes/book');
+const remove_item=require('./routes/remove_item');
+const admin=require('./routes/admin');
 
 app.use('/', update);
 app.use('/',del);
 app.use('/',display);
-app.use('/',display_all)
-app.use('/',tocart)
-app.use('/',send_cart)
-app.use('/',book)
+app.use('/',display_all);
+app.use('/',tocart);
+app.use('/',send_cart);
+app.use('/',book);
+app.use('/',remove_item);
+app.use('/',admin);
 
 const PORT = process.env.PORT || 5000;
 const url = "mongodb+srv://bg:hello123@data.cyqgb.mongodb.net/db?retryWrites=true&w=majority";
@@ -129,15 +132,25 @@ function call_back(category,type){
         let email_id=data.emails[0].value
         cat=category.substring(1);
         
-        rec_login(email_id,user_name, cat)
-        
-		res.redirect(red_url.format({
-            pathname:category,
-            query: {
-               "email": email_id,
-               "username": user_name
-             }
-            }));
+        if(cat=='admin'){
+            if(email_id=='f20170927@hyderabad.bits-pilani.ac.in' || email_id=='f20171449@hyderabad.bits-pilani.ac.in'){
+                res.redirect(category);
+            }
+            else{
+                res.send('<html><body><h1>YOU ARE NOT AUTHORIZED!!!</h1></body></html>');
+            }
+        }
+        else{
+            rec_login(email_id,user_name, cat)
+
+            res.redirect(red_url.format({
+                pathname:category,
+                query: {
+                "email": email_id,
+                "username": user_name
+                }
+                }));
+        }
 
 	})
 }
@@ -146,6 +159,7 @@ call_back('/customer','cust');
 call_back('/banquet','banq');
 call_back('/caterer','cat');
 call_back('/photographer','photog');
+call_back('/admin','admin');
 
 app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,"client",'build','index.html'))
