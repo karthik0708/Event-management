@@ -19,8 +19,11 @@
     "react-datepicker": "^3.8.0",
     "react-dom": "16.8.6",
     "react-flippy": "0.1.5",
+    "react-linechart": "^1.1.12",
+    "react-native-chart-kit": "^6.11.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "^4.0.3",
+    "recharts": "^2.0.9",
     "styled-components": "^5.2.3",
     "uuid": "3.3.3",
     "watch": "^1.0.2"

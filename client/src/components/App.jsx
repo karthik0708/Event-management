@@ -10,6 +10,7 @@ import Header from "./basic/Header";
 import Checkout from "./type/Checkout"
 import Pay from "./type/pay"
 import Container from "react-bootstrap/esm/Container";
+import Admin from "./type/Admin";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
         <Container>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/admin" exact component={Admin} />
             <Route path="/payment" exact component={Pay} />
             <Route path="/customer"  exact component={Customer} />
             <Route path="/checkout"  exact component={Checkout} />

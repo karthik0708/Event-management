@@ -6,6 +6,9 @@ import camera from "./images/video-camera.png";
 import customer from "./images/customer.png";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import {Link} from 'react-router-dom';
+import  {Switch,BrowserRouter, Route}  from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function Home() {
   return (
@@ -55,7 +58,22 @@ function Home() {
             variab="photographer"
           />
         </Row>
-        
+        <Row>
+        <Route
+            render={({ history }) => (
+              <Button
+                variant="outline-dark"
+                onClick={() => {
+                  window.location.assign("/"+"admin"+"/google");
+                  history.push("/admin/google");
+                }}
+              >
+              Admin
+              </Button>
+            )}
+          />
+
+        </Row>
       </div>
     </Container>
   );

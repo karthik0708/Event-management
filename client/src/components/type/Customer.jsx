@@ -21,6 +21,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -321,6 +322,7 @@ function Customer() {
         return (
             <Cart
               cid="0"
+              note={noteItem}
               type={noteItem.type}
               company={noteItem.company}
               contact={noteItem.contact}
@@ -382,15 +384,3 @@ function Customer() {
 }
 
 export default Customer;
-
-
-{/* <Card
-              key={index}
-              id={index}
-              sid={noteItem.sid}
-              company={noteItem.company}
-              contact={noteItem.contact}
-              cost={noteItem.cost}
-              content={noteItem.about}
-              date={date}
-            /> */}
