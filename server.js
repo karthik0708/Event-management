@@ -46,7 +46,7 @@ app.use('/',remove_item);
 app.use('/',admin);
 
 const PORT = process.env.PORT || 5000;
-const url = "mongodb+srv://bg:hello123@data.cyqgb.mongodb.net/db?retryWrites=true&w=majority";
+const url = "mongodb+srv://karthik:hello123@data.cyqgb.mongodb.net/db?retryWrites=true&w=majority";
 
 const connectionParams={
     useNewUrlParser: true,
