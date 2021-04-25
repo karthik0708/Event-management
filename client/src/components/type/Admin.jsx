@@ -179,6 +179,7 @@ function Admin(){
                     <Tab label="PHOTOGRAPHER" {...a11yProps(3)} />
                 </Tabs>
                 <TabPanel value={value} index={0}>
+                <h4>Revenue vs Time:</h4>
                     <LineChart
                         width={500}
                         height={300}
@@ -203,6 +204,7 @@ function Admin(){
                     />
                     
                     </LineChart>
+                    <h4>Number of Orders vs Time:</h4>
                     <LineChart
                         width={500}
                         height={300}
@@ -226,6 +228,7 @@ function Admin(){
                         activeDot={{ r: 8 }}
                     />                  
                     </LineChart>
+                    <h4>Pie Charts on Total Revenue, Total Orders, Average Revenue:</h4>
                     <PieChart width={800} height={1000}>
                         <Pie
                           dataKey="value"
@@ -261,6 +264,7 @@ function Admin(){
                       </PieChart>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
+                <h4>Revenue vs Time:</h4>
                 <LineChart
                       width={500}
                       height={300}
@@ -285,6 +289,7 @@ function Admin(){
                   />
                   
                   </LineChart>
+                  <h4>Number of Orders vs Time:</h4>
                   <LineChart
                       width={500}
                       height={300}
@@ -310,6 +315,7 @@ function Admin(){
                   </LineChart>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
+                <h4>Revenue vs Time:</h4>
                 <LineChart
                       width={500}
                       height={300}
@@ -334,6 +340,7 @@ function Admin(){
                   />
                   
                   </LineChart>
+                  <h4>Number of Orders vs Time:</h4>
                   <LineChart
                       width={500}
                       height={300}
@@ -359,6 +366,7 @@ function Admin(){
                   </LineChart>
                 </TabPanel>
                 <TabPanel value={value} index={3}>
+                <h4>Revenue vs Time:</h4>
                 <LineChart
                       width={500}
                       height={300}
@@ -381,8 +389,8 @@ function Admin(){
                       stroke="#8884d8"
                       activeDot={{ r: 8 }}
                   />
-                  
                   </LineChart>
+                  <h4>Number of Orders vs Time:</h4>
                   <LineChart
                       width={500}
                       height={300}

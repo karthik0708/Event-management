@@ -6,8 +6,18 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import Cart from './Cart';
 import {Link} from 'react-router-dom';
-
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      "& > * + *": {
+        marginLeft: theme.spacing(2)
+      }
+    }
+  }));
 function Checkout(props){
+    const classes = useStyles();
     console.log(props.location);
     console.log(props.location.state);
     // const location = useLocation();
@@ -16,10 +26,12 @@ function Checkout(props){
     const username = props.location.state.username;
     const [total,setTotal]=useState(0)
     const [cart,setCart]=useState([])
+    const [loading, isLoading] = useState(true);
+    
     useEffect(() => {
     if (cart) {
         axios.get('/'+'customer'+'/cart_items',{params: {cust_email: email_id, cust_name:username}})
-            .then(res=>{setCart(res.data);calTotal(res.data)})
+            .then(res=>{setCart(res.data);calTotal(res.data);isLoading(false)})
             .catch(error=>console.log(error))
         }
     },[]);
@@ -32,36 +44,42 @@ function Checkout(props){
     }
     return (
     <Container>
+        {loading && <CircularProgress color="dark" style={{margin:"200px 0px 300px 500px"}}/>}       
+        {!loading && <>
+        <h3 styles={{margin:"30px 0px 20px -10px"}}>Order Details:</h3>
+            {cart.map((noteItem, index) => {
+                    return (
+                    <Cart
+                        key={index}
+                        id={index}
+                        cid="10"
+                        email={noteItem.email}
+                        type={noteItem.type}
+                        company={noteItem.company}
+                        cost={noteItem.cost}
+                    />
+                );
+            })}
+        
+        
         <Row>
             <Col>
-                <h1>Total: {total}</h1>
+                <h4 style={{margin:"20px 0px 0px 370px"}}>Total: {total}</h4>
             </Col>
         </Row>
-        {cart.map((noteItem, index) => {
-        return (
-            <Cart
-                key={index}
-                id={index}
-                cid="10"
-                email={noteItem.email}
-                type={noteItem.type}
-                company={noteItem.company}
-                cost={noteItem.cost}
-            />
-        );
-      })}
       <Link to={{ 
           pathname: "/payment", 
           state: {email_id,username,total,cart}
           }}>
           <Button 
-          variant="outline-dark"
+          variant="dark"
+          style={{margin:"20px 0px 0px 400px"}}
           onClick={ () => {
             console.log(email_id,username,total,cart);
           }}
-          >Checkout</Button>
+          >Proceed</Button>
         </Link>
-
+        </>}
     </Container>
     );
 }

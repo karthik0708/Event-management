@@ -9,7 +9,7 @@ function Header() {
           variant="outline-secondary"
           onClick={() => {
           window.location.assign("/");
-          history.push(props.route);
+          history.push("/");
           }}
           >
           Home

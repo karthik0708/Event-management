@@ -22,6 +22,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -189,7 +190,7 @@ function Customer() {
     <div className={classes.root}>
       {!isExpanded && <div >
           <Row>
-            <Col>
+            <Col style={{margin:"auto 0px 40px 285px"}}>
               <h4>Pick the date for which you want to book for:</h4>
             </Col>
           </Row>

@@ -5,6 +5,7 @@ import Container from "react-bootstrap/esm/Container";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import axios from "axios";
+import { Tick } from 'react-crude-animated-tick';
 function Pay(props) {
     const [isExpanded, setExpanded] = useState(false);
     console.log(props.location.state)
@@ -41,7 +42,7 @@ function handleClick(){
             <Col style={{margin:"auto 200px auto 485px"}}>
                 <Button
                     onClick={handleClick}
-                    variant="outline-dark"
+                    variant="dark"
                 >
                     Proceed
                 </Button>
@@ -50,9 +51,10 @@ function handleClick(){
         </Row>
         </>}
         {isExpanded && <Row>
-            <Col>
-               <h1>Transaction Completed!!</h1> 
-            </Col>           
+            <div style={{margin:"150px 0px 0px 450px"}} >
+                <Tick size={200} />
+            </div>
+            <h1 style={{margin:"0px 0px 200px 330px"}}>Transaction Completed!!</h1>            
         </Row>}
         
       </Container>

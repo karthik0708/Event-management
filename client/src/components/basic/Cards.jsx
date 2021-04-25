@@ -27,7 +27,7 @@ function Cards(props) {
           <Route
             render={({ history }) => (
               <Button
-                variant="outline-dark"
+                variant="dark"
                 onClick={() => {
                   window.location.assign("/"+props.variab+"/google");
                   history.push(props.route);
