@@ -95,7 +95,7 @@ function Cards(props) {
         <Card.Text>
         {/* {JSON.stringify(props.date)} */}
         <p>{props.sid == "1"?"Capacity: ": (props.sid == "2"?"Cuisines: ":null)} {props.sid == "1"?props.capacity:(props.sid == "2"?props.cuisine:null)} </p>
-          <p>{props.sid == "1"?"Cost per day: ": (props.sid == "2"?"Cost: ": "Cost per hour:")} {props.sid == "1"?props.cost:(props.sid == "2"?props.cost:props.cost)}</p>
+          <p>{props.sid == "1"?"Cost per day: ": (props.sid == "2"?"Cost: ": "Cost per hour:")} {props.cost}</p>
           <p>Contact No: {props.contact}</p>
         </Card.Text>
         <div className={classes.root}>
