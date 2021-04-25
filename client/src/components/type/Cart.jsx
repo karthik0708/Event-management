@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
+
 function Cart(props){
 function handle(){
   axios.post('/customer'+'/remove_item',props.note)
