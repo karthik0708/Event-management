@@ -133,7 +133,7 @@ function call_back(category,type){
         cat=category.substring(1);
         
         if(cat=='admin'){
-            if(email_id=='f20170927@hyderabad.bits-pilani.ac.in' || email_id=='f20171449@hyderabad.bits-pilani.ac.in'){
+            if(email_id=='f20170927@hyderabad.bits-pilani.ac.in' || email_id=='f20171449@hyderabad.bits-pilani.ac.in' || email_id=='f20171083@hyderabad.bits-pilani.ac.in' || email_id=='f20171011@hyderabad.bits-pilani.ac.in'){
                 res.redirect(category);
             }
             else{
